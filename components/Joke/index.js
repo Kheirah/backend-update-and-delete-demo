@@ -11,13 +11,13 @@ export default function Joke() {
 
   const { data, isLoading, mutate } = useSWR(`/api/jokes/${id}`);
 
-  function handleEdit(event) {
+  async function handleEdit(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
     const jokeData = Object.fromEntries(formData);
 
-    const response = fetch(`/api/jokes/${id}`, {
+    const response = await fetch(`/api/jokes/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
